@@ -1,0 +1,1 @@
+Simply implementing a basic neural network, from scratch - although often by "hand-translating" Python versions - In order to become more familiar with the Zig language, the basics of AI & Github itself.
