@@ -8,6 +8,8 @@ pub fn main() !void {
         return;
     };
 
+    std.debug.print("Seed address is: {}\n", .{&seed});
+
     var prng = std.Random.DefaultPrng.init(seed);
     var rand = prng.random();
 
