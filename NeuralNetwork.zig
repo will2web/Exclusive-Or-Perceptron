@@ -13,17 +13,13 @@ pub fn main() !void {
     var prng = std.Random.DefaultPrng.init(seed);
     var rand = prng.random();
 
-    //below just for testing/debuging random number generator
-    // Generate a random float between 0 and 1
-    //const value = rand.float(f32);
-    //std.debug.print("Random value: {}\n", .{value});
-    //std.debug.print("My random number is: {d}\n", .{value});
-
     const weight1 = rand.float(f32);
     const weight2 = rand.float(f32);
     const weight3 = rand.float(f32);
     const learningRate = 1;
     const bias = 1;
+
+    const weights = [_]f32{ weight1, weight2, weight3 };
 
     var x: i3 = undefined;
     x = learningRate + bias;
@@ -32,4 +28,7 @@ pub fn main() !void {
     std.debug.print("Weight 1 is : {d}\n", .{weight1});
     std.debug.print("Weight 2 is : {d}\n", .{weight2});
     std.debug.print("Weight 3 is : {d}\n", .{weight3});
+
+    std.debug.print("len: {}\n", .{weights.len});
+    std.debug.print("\nMy Weights are: {any}\n", .{weights});
 }
