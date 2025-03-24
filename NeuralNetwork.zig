@@ -1,7 +1,5 @@
 const std = @import("std");
-
 const learningRate = 1;
-//const RandomNumGenerate = std.rand.DefaultPrng.init(42);
 
 pub fn main() !void {
     var seed: u64 = undefined;
@@ -33,7 +31,6 @@ pub fn main() !void {
     std.debug.print("Weight 2 is : {d}\n", .{weight2});
     std.debug.print("Weight 3 is : {d}\n", .{weight3});
 
-    std.debug.print("len: {}\n", .{weights.len});
     std.debug.print("\nMy Weights are: {any}\n", .{weights});
 
     perceptron(&weights, bias, 3, 4, 5);
