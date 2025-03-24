@@ -37,7 +37,16 @@ pub fn main() !void {
 }
 
 fn perceptron(weights: [3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
-    const outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
+    var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
+
+    if (outputP > 0) {
+        outputP = 1;
+        std.debug.print("outputP is {}\n", .{outputP});
+    } else {
+        outputP = 0;
+        std.debug.print("outputP is {}\n", .{outputP});
+    }
+
     std.debug.print("outputP is {}\n", .{outputP});
     std.debug.print("output is {}\n", .{output});
 }
