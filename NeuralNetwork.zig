@@ -1,4 +1,6 @@
 const std = @import("std");
+
+const learningRate = 1;
 //const RandomNumGenerate = std.rand.DefaultPrng.init(42);
 
 pub fn main() !void {
@@ -16,9 +18,10 @@ pub fn main() !void {
     const weight1 = rand.float(f32);
     const weight2 = rand.float(f32);
     const weight3 = rand.float(f32);
-    const learningRate = 1;
+
     const bias = 1;
-    const weights = [_]f32{ weight1, weight2, weight3 };
+    var weights = [_]f32{ weight1, weight2, weight3 };
+    //_ = &weights; // Trick to suppress unused variable warning
 
     std.debug.print("Data type for bias is {}\n", .{@TypeOf(bias)});
 
@@ -33,10 +36,14 @@ pub fn main() !void {
     std.debug.print("len: {}\n", .{weights.len});
     std.debug.print("\nMy Weights are: {any}\n", .{weights});
 
-    perceptron(weights, bias, 3, 4, 5);
+    perceptron(&weights, bias, 3, 4, 5);
+
+    std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
+    std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
+    std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
 }
 
-fn perceptron(weights: [3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
+fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
     var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
 
     if (outputP > 0) {
@@ -47,17 +54,13 @@ fn perceptron(weights: [3]f32, bias: comptime_int, input1: f32, input2: f32, out
         std.debug.print("outputP is {}\n", .{outputP});
     }
 
-    std.debug.print("outputP is {}\n", .{outputP});
+    const outputerror = output - outputP;
+    weights[0] += outputerror * input1 * learningRate;
+    weights[1] += outputerror * input2 * learningRate;
+    weights[2] += outputerror * bias * learningRate;
+    // std.debug.print("outputP is {}\n", .{outputP});
     std.debug.print("output is {}\n", .{output});
+    std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
+    std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
+    std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
 }
-
-// def Perceptron(input1, input2, output) :
-//    outputP = input1*weights[0]+input2*weights[1]+bias*weights[2]
-//    if outputP > 0 : #activation function (here Heaviside)
-//       outputP = 1
-//    else :
-//       outputP = 0
-//    error = output – outputP
-//    weights[0] += error * input1 * lr
-//    weights[1] += error * input2 * lr
-//    weights[2] += error * bias * lr
