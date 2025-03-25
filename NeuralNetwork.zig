@@ -33,11 +33,17 @@ pub fn main() !void {
 
     std.debug.print("\nMy Weights are: {any}\n", .{weights});
 
-    perceptron(&weights, bias, 3, 4, 5);
+    var iterations: usize = 0;
 
-    std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
-    std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
-    std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
+    while (iterations < 50) {
+        perceptron(&weights, bias, 3, 4, 5);
+
+        std.debug.print("Weight 1 is : {d}|", .{weights[0]});
+        std.debug.print("Weight 2 is : {d}|", .{weights[1]});
+        std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
+
+        iterations += 1;
+    }
 }
 
 fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
@@ -56,8 +62,8 @@ fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, ou
     weights[1] += outputerror * input2 * learningRate;
     weights[2] += outputerror * bias * learningRate;
     // std.debug.print("outputP is {}\n", .{outputP});
-    std.debug.print("output is {}\n", .{output});
-    std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
-    std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
-    std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
+    // std.debug.print("output is {}\n", .{output});
+    // std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
+    // std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
+    // std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
 }
