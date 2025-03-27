@@ -49,6 +49,15 @@ pub fn main() !void {
 fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
     var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
 
+    // x = int(input())
+    // y = int(input())
+    // outputP = x*weights[0] + y*weights[1] + bias*weights[2]
+    // if outputP > 0 : #activation function
+    //    outputP = 1
+    // else :
+    //    outputP = 0
+    // print(x, "or", y, "is : ", outputP)
+
     if (outputP > 0) {
         outputP = 1;
         std.debug.print("outputP is {}\n", .{outputP});
