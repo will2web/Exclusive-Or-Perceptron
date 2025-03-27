@@ -57,6 +57,9 @@ fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, ou
         std.debug.print("outputP is {}\n", .{outputP});
     }
 
+    std.debug.print("outputP is {}\n", .{outputP});
+    std.debug.print("output is {}\n", .{output});
+
     const outputerror = output - outputP;
     weights[0] += outputerror * input1 * learningRate;
     weights[1] += outputerror * input2 * learningRate;
