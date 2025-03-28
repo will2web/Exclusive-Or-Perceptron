@@ -36,7 +36,10 @@ pub fn main() !void {
     var iterations: usize = 0;
 
     while (iterations < 50) {
-        perceptron(&weights, bias, 3, 4, 5);
+        perceptron(&weights, bias, 1, 1, 1);
+        perceptron(&weights, bias, 1, 0, 1);
+        perceptron(&weights, bias, 0, 1, 1);
+        perceptron(&weights, bias, 0, 0, 0);
 
         std.debug.print("Weight 1 is : {d}|", .{weights[0]});
         std.debug.print("Weight 2 is : {d}|", .{weights[1]});
@@ -49,13 +52,6 @@ pub fn main() !void {
 fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, output: f32) void {
     var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
 
-    // x = int(input())
-    // y = int(input())
-    // outputP = x*weights[0] + y*weights[1] + bias*weights[2]
-    // if outputP > 0 : #activation function
-    //    outputP = 1
-    // else :
-    //    outputP = 0
     // print(x, "or", y, "is : ", outputP)
 
     if (outputP > 0) {
