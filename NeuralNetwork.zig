@@ -13,27 +13,33 @@ pub fn main() !void {
     var prng = std.Random.DefaultPrng.init(seed);
     var rand = prng.random();
 
-    weights = [_]f32{ rand.float(f32), rand.float(f32), rand.float(f32) };
+    weights = [_]f32{ -@abs(rand.float(f32)), -@abs(rand.float(f32)), -@abs(rand.float(f32)) };
+    //weights = [_]f32{ rand.float(f32), rand.float(f32), rand.float(f32) };
 
     std.debug.print("\nMy Weights are: {d}\n", .{weights});
 
     var iterations: usize = 0;
 
     while (iterations < 50) {
+        std.debug.print("Iteration : {d}\t", .{iterations});
+        std.debug.print("Weights: {d}\n", .{weights});
+
         perceptron(1, 1, 1);
         perceptron(1, 0, 1);
         perceptron(0, 1, 1);
         perceptron(0, 0, 0);
-
-        std.debug.print("Iteration : {d}\n", .{iterations});
-        std.debug.print("\nWeights: {d}\n", .{weights});
 
         iterations += 1;
     }
 }
 
 fn perceptron(input1: f32, input2: f32, output: f32) void {
+    //My Weights are: { -0.90707314, -0.6180235, -0.7428889 }
+    //perceptron(1, 1, 1);
+    //Inital outputP, OPE: -2.2679856,3.2679856
     var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
+    const outputPError = output - outputP;
+    std.debug.print("Inital outputP, OPE: {d},{d}\n", .{ outputP, outputPError });
 
     if (outputP > 0) {
         outputP = 1;
