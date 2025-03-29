@@ -8,8 +8,6 @@ pub fn main() !void {
         return;
     };
 
-    std.debug.print("Seed address is: {}\n", .{&seed});
-
     var prng = std.Random.DefaultPrng.init(seed);
     var rand = prng.random();
 
@@ -19,19 +17,12 @@ pub fn main() !void {
 
     const bias = 1;
     var weights = [_]f32{ weight1, weight2, weight3 };
-    //_ = &weights; // Trick to suppress unused variable warning
 
-    std.debug.print("Data type for bias is {}\n", .{@TypeOf(bias)});
+    // std.debug.print("Weight 1 is : {d}\n", .{weight1});
+    // std.debug.print("Weight 2 is : {d}\n", .{weight2});
+    // std.debug.print("Weight 3 is : {d}\n", .{weight3});
 
-    var x: i3 = undefined;
-    x = learningRate + bias;
-
-    std.debug.print("Learning Rate plus Bias Equals {d}\n", .{x});
-    std.debug.print("Weight 1 is : {d}\n", .{weight1});
-    std.debug.print("Weight 2 is : {d}\n", .{weight2});
-    std.debug.print("Weight 3 is : {d}\n", .{weight3});
-
-    std.debug.print("\nMy Weights are: {any}\n", .{weights});
+    std.debug.print("\nMy Weights are: {d}\n", .{weights});
 
     var iterations: usize = 0;
 
@@ -41,6 +32,7 @@ pub fn main() !void {
         perceptron(&weights, bias, 0, 1, 1);
         perceptron(&weights, bias, 0, 0, 0);
 
+        std.debug.print("This is iteration : {d}\n", .{iterations});
         std.debug.print("Weight 1 is : {d}|", .{weights[0]});
         std.debug.print("Weight 2 is : {d}|", .{weights[1]});
         std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
@@ -56,21 +48,24 @@ fn perceptron(weights: *[3]f32, bias: comptime_int, input1: f32, input2: f32, ou
 
     if (outputP > 0) {
         outputP = 1;
-        std.debug.print("outputP is {}\n", .{outputP});
+        //std.debug.print("outputP is {}\t", .{outputP});
     } else {
         outputP = 0;
-        std.debug.print("outputP is {}\n", .{outputP});
+        //std.debug.print("outputP is {}\n", .{outputP});
     }
 
-    std.debug.print("outputP is {}\n", .{outputP});
-    std.debug.print("output is {}\n", .{output});
+    //std.debug.print("outputP is {}\t", .{outputP});
+    //  std.debug.print("output is {}\n", .{output});
 
-    const outputerror = output - outputP;
+    const outputError = output - outputP;
+    //var outputerror: f32 = output - outputP;
+
+    std.debug.print("outputerror is : {d}\n", .{outputerror});
     weights[0] += outputerror * input1 * learningRate;
     weights[1] += outputerror * input2 * learningRate;
     weights[2] += outputerror * bias * learningRate;
-    // std.debug.print("outputP is {}\n", .{outputP});
-    // std.debug.print("output is {}\n", .{output});
+    std.debug.print("outputP is {}\t", .{outputP});
+    std.debug.print("output is {}\t", .{output});
     // std.debug.print("Weight 1 is : {d}\n", .{weights[0]});
     // std.debug.print("Weight 2 is : {d}\n", .{weights[1]});
     // std.debug.print("Weight 3 is : {d}\n", .{weights[2]});
