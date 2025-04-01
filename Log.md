@@ -1,0 +1,3 @@
+Create, Read & Write File code ad\apted from: https://www.reddit.com/r/Zig/comments/1fsr9gb/how_to_create_read_and_write_files_in_zig/
+Json Code adapted from: https://www.huy.rocks/everyday/01-09-2022-zig-json-in-5-minutes
+4/1/2025

@@ -31,6 +31,22 @@ pub fn main() !void {
 
         iterations += 1;
     }
+
+    const weightStruct = struct { Weight0: f32, Weight1: f32, Weight2: f32 };
+    const JSONweights = weightStruct{
+        .Weight0 = weights[0],
+        .Weight1 = weights[1],
+        .Weight2 = weights[2],
+    };
+
+    var json_buffer: [1024]u8 = undefined;
+    var json_fba = std.heap.FixedBufferAllocator.init(&json_buffer);
+    var json_writer = std.ArrayList(u8).init(json_fba.allocator());
+    try std.json.stringify(JSONweights, .{}, json_writer.writer());
+
+    const weightsFile = try std.fs.cwd().createFile("weights.json", .{});
+    try weightsFile.writeAll(json_writer.items);
+    defer weightsFile.close();
 }
 
 fn perceptron(input1: f32, input2: f32, output: f32) void {
