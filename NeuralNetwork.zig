@@ -14,7 +14,6 @@ pub fn main() !void {
     var prng = std.Random.DefaultPrng.init(seed);
     var rand = prng.random();
 
-    //weights = [_]f32{ -@abs(rand.float(f32)), -@abs(rand.float(f32)), -@abs(rand.float(f32)) };
     weights = [_]f32{ rand.float(f32), rand.float(f32), rand.float(f32) };
 
     std.debug.print("\nInitial Weights: {d}\n", .{weights});
