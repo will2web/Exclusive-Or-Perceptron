@@ -1,3 +1,8 @@
+Move JSON creation & file save to it's own function
+
+4/2/2025
+-
+
 4/1/2025
 -Added code to create struct from weights array, convert struct to JSON format and save JSON file.
     Create, Read & Write File code adapted from: https://www.reddit.com/r/Zig/comments/1fsr9gb/how_to_create_read_and_write_files_in_zig/
