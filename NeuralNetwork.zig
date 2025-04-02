@@ -21,7 +21,7 @@ pub fn main() !void {
     std.debug.print("WeightSum: {d}\n\n", .{weightSum});
     var iterations: usize = 0;
 
-    while (iterations < 4) {
+    while (iterations < 6) {
         std.debug.print("\n\nIteration : {d}\n", .{iterations});
 
         perceptron(1, 1, 1);
