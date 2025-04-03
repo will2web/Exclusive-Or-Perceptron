@@ -1,4 +1,4 @@
-Can't decide if I want to stringify the weights array or the struct....
+Now need to read the weights & use the perceptron for future "predictions"?
 
 4/2/2025
 -Moved JSON creation & file save to it's own function
