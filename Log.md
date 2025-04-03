@@ -1,4 +1,10 @@
-Now need to read the weights & use the perceptron for future "predictions"?
+-read the weights & use the perceptron for future "predictions"
+-change print Statements that are part of actual output from debug.print to standardout.print
+
+
+4/3/2025
+Started building actual Perceptron. Mostly just getting the input & output working in Zig
+
 
 4/2/2025
 -Moved JSON creation & file save to it's own function
