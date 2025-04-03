@@ -1,7 +1,8 @@
-Move JSON creation & file save to it's own function
+Can't decide if I want to stringify the weights array or the struct....
 
 4/2/2025
--
+-Moved JSON creation & file save to it's own function
+-removed (maybe temporarily) the JSON weights struct
 
 4/1/2025
 -Added code to create struct from weights array, convert struct to JSON format and save JSON file.

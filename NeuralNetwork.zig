@@ -47,6 +47,11 @@ fn save_weights_to_file() !void {
     var json_fba = std.heap.FixedBufferAllocator.init(&json_buffer);
     var json_writer = std.ArrayList(u8).init(json_fba.allocator());
     try std.json.stringify(json_weights, .{}, json_writer.writer());
+    //try std.json.stringify(json_weights, .{}, json_writer.writer());
+
+    std.debug.print("Type of json_writer is {any}\n", .{@TypeOf(json_writer)});
+    std.debug.print("Type of json_writer.writer() is {any}\n", .{@TypeOf(json_writer.writer())});
+    std.debug.print("Type of json_writer.items is {any}\n", .{@TypeOf(json_writer.items)});
 
     const weightsFile = try std.fs.cwd().createFile("weights.json", .{});
     try weightsFile.writeAll(json_writer.items);
