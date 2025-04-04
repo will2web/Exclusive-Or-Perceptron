@@ -20,40 +20,22 @@ pub fn main() !void {
     weightSum = weights[0] + weights[1] + weights[2];
     std.debug.print("WeightSum: {d}\n\n", .{weightSum});
 
-    std.debug.print("Please type Yes or NO for 1st Decision", .{});
-
-    //     while (true) {
-    //         const stdin = std.io.getStdIn().reader();
-    //         const stdout = std.io.getStdOut().writer();
-    //         const bare_line = try stdin.readUntilDelimiterAlloc(
-    //             std.heap.page_allocator,
-    //             '\n',
-    //             8192,
-    //         );
-    //         defer std.heap.page_allocator.free(bare_line);
-    // const line = std.mem.trim(u8, bare_line, "\r");
-
-    var input: [5]u8 = undefined;
     const stdin = std.io.getStdIn().reader();
     const stdout = std.io.getStdOut().writer();
 
-    _ = try stdin.readUntilDelimiter(&input, '\n');
+    std.debug.print("Is the 1st input Yes or No? ", .{});
+    var decision1: [5]u8 = undefined;
+    _ = try stdin.readUntilDelimiter(&decision1, '\n');
+    const decision1_trim = std.mem.trim(u8, &decision1, "\r\n");
 
-    try stdout.print("The user entered: {s}\n", .{input});
+    std.debug.print("Is the 2nd input Yes or No? ", .{});
+    var decision2: [5]u8 = undefined;
+    _ = try stdin.readUntilDelimiter(&decision2, '\n');
+    //    decision2 = std.mem.trim([5]u8, decision2, "\r");
 
-    // const stdin = std.io.getStdIn().reader();
-    // var buf: [10]u8 = undefined;
-    // var decision1: []u8 = undefined;
-
-    // if (try stdin.readUntilDelimiterOrEof(buf[0..], '\n')) |user_input| {
-    //     decision1 = user_input; //std.fmt.parseInt(i64, user_input, 10);
-    // } else {
-    //     decision1 = undefined;
-    // }
-
-    //   std.debug.print("You have selected {any}", .{decision1});
-
-    //perceptron(input1: f32, input2: f32, output: f32)
+    try stdout.print("{s}\n", .{decision1_trim});
+    try stdout.print("{s}\n", .{decision2});
+    //try stdout.print("Your inputs are: {s} and {s} and {s}\n", .{ decision1, decision2, decision2 });
 }
 
 fn perceptron(input1: f32, input2: f32, output: f32) void {

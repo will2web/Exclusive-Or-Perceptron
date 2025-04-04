@@ -1,6 +1,6 @@
 -read the weights & use the perceptron for future "predictions"
 -change print Statements that are part of actual output from debug.print to standardout.print
-
+-posix is Not really meant to be used on Windows; might try to wait to test for the operating system and then use appropriate random sea generator
 
 4/3/2025
 Started building actual Perceptron. Mostly just getting the input & output working in Zig
