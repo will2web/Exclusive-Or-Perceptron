@@ -26,23 +26,15 @@ pub fn main() !void {
     std.debug.print("Is the 1st input Yes or No? ", .{});
     var decision1: [5]u8 = undefined;
     _ = try stdin.readUntilDelimiter(&decision1, '\n');
-    const decision1_trim = std.mem.trim(u8, &decision1, "\r\n");
-
-    //     try stdout.print("Is the 1st input Yes or No? ", .{});
-    //     var decision1: [1024]u8 = undefined; // Increase buffer size
-    //     const bytes_read = try stdin.readUntilDelimiter(&decision1, '\n');
-    //     const decision1_slice = std.mem.sliceTo(decision1[0..bytes_read], '\r') catch decision1[0..bytes_read];
-    //     const decision1_trim = std.mem.trim(u8, decision1_slice, "\r\n");
-    //     try stdout.print("{s}\n", .{decision1_trim});
+    const decision1_slice = std.mem.sliceTo(&decision1, '\r');
 
     std.debug.print("Is the 2nd input Yes or No? ", .{});
     var decision2: [5]u8 = undefined;
     _ = try stdin.readUntilDelimiter(&decision2, '\n');
-    //    decision2 = std.mem.trim([5]u8, decision2, "\r");
+    const decision2_slice = std.mem.sliceTo(&decision2, '\r');
 
-    try stdout.print("{s}\n", .{decision1_trim});
-    try stdout.print("{s}\n", .{decision2});
-    //try stdout.print("Your inputs are: {s} and {s} and {s}\n", .{ decision1, decision2, decision2 });
+    try stdout.print("{s}\n", .{decision1_slice});
+    try stdout.print("{s}\n", .{decision2_slice});
 }
 
 fn perceptron(input1: f32, input2: f32, output: f32) void {
