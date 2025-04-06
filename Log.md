@@ -1,3 +1,8 @@
+-Need to read in correct weights from file
+-When I do Input validation, I can convert input back to U2 instead of float 32
+-Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
+-Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
+-Clean up variable declaration placement, globally versus locally;search about whether I want to try to have none globally or if that's okay
 -read the weights & use the perceptron for future "predictions"
 -posix is not really meant to be used on Windows; might try to wait to test for the operating system and then use appropriate random seed generator
 -start catching errors (and removing the '_ = ' sugar)!
