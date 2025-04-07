@@ -50,6 +50,13 @@ pub fn main() !void {
     // try stdout.print("{s}\n", .{decision2_slice});
 
     try perceptron(decision1_value, decision2_value, stdout);
+
+    //const weightsFiles = open file or read file?
+    //print contents of file
+    //need to parse to JSON
+    //need to allocate Space on the heap like I did with write file
+    //seems I Need to deallocate both the opening of the file and the parsing of JSON data
+    //assign weights to
 }
 
 fn perceptron(input1: f32, input2: f32, stdout: anytype) !void {

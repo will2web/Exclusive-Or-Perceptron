@@ -1,4 +1,4 @@
--Need to read in correct weights from file
+
 -When I do Input validation, I can convert input back to U2 instead of float 32
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
 -Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
@@ -9,6 +9,13 @@
 -changed print Statements that are part of actual output from debug.print to standardout.print
 -comment code
 
+
+-Need to read in correct weights from file
+4/7/2025
+
+
+4/6/2025
+Converted no and yes inputs to zeros and one's, and passed standard-in instance to perceptron function
 
 4/5/2025
 Got the standard input working by using mem.sliceTo instead of mem.trim
