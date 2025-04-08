@@ -1,4 +1,4 @@
-
+-How can I test for memory leaks?
 -When I do Input validation, I can convert input back to U2 instead of float 32
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
 -Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
@@ -10,9 +10,9 @@
 -comment code
 
 
--Need to read in correct weights from file
-4/7/2025
 
+4/8/2025
+reading in weights from file
 
 4/6/2025
 Converted no and yes inputs to zeros and one's, and passed standard-in instance to perceptron function
