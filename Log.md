@@ -9,7 +9,14 @@
 -changed print Statements that are part of actual output from debug.print to standardout.print
 -comment code
 
+READ
+https://zig.guide/standard-library/allocators/
+https://stackoverflow.com/questions/68368122/how-to-read-a-file-in-zig#:~:text=The%20above%20is%20a%20little,2/%23readers-and-writers
 
+https://zig.guide/standard-library/json/
+https://ziggit.dev/t/resources-for-parsing-json-strings/1276/3
+https://www.huy.rocks/everyday/01-09-2022-zig-json-in-5-minutes
+https://www.openmymind.net/Reading-A-Json-Config-In-Zig/
 
 4/8/2025
 reading in weights from file
