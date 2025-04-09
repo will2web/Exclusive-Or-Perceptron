@@ -1,3 +1,4 @@
+-How can I see how much memory is being used by a program?
 -How can I test for memory leaks?
 -When I do Input validation, I can convert input back to U2 instead of float 32
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
@@ -10,13 +11,16 @@
 -comment code
 
 READ
-https://zig.guide/standard-library/allocators/
-https://stackoverflow.com/questions/68368122/how-to-read-a-file-in-zig#:~:text=The%20above%20is%20a%20little,2/%23readers-and-writers
-
 https://zig.guide/standard-library/json/
 https://ziggit.dev/t/resources-for-parsing-json-strings/1276/3
 https://www.huy.rocks/everyday/01-09-2022-zig-json-in-5-minutes
 https://www.openmymind.net/Reading-A-Json-Config-In-Zig/
+
+https://zig.guide/standard-library/allocators/
+https://stackoverflow.com/questions/68368122/how-to-read-a-file-in-zig#:~:text=The%20above%20is%20a%20little,2/%23readers-and-writers
+https://pedropark99.github.io/zig-book/Chapters/01-zig-weird.html
+https://ziglearn.org/chapter-1/
+
 
 4/8/2025
 reading in weights from file
