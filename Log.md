@@ -22,6 +22,9 @@ https://pedropark99.github.io/zig-book/Chapters/01-zig-weird.html
 https://ziglearn.org/chapter-1/
 
 
+4/9/2025
+Utilized trained weights: Opened, read in weights.json file & Use them to correctly predict Exclusive Or function!
+
 4/8/2025
 reading in weights from file
 
