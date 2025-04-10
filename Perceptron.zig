@@ -1,33 +1,15 @@
 const std = @import("std");
-const learningRate = 1;
-var seed: u64 = undefined;
-const bias = 1;
-var weights: [3]f32 = undefined;
-var weightSum: f32 = undefined;
 const filename = "C:/Users/wresc/ZigProjects/Neural Network/Neural-Network/weights.json";
+const Choice = enum {
+    No,
+    Yes,
+};
 
 pub fn main() !void {
-    //             TEMPORARILY COMMENTED TO SKIP USER INPUT FOR NOW
     const stdin = std.io.getStdIn().reader();
     const stdout = std.io.getStdOut().writer();
-    //             TEMPORARILY COMMENTED TO SKIP USER INPUT FOR NOW
 
-    std.posix.getrandom(std.mem.asBytes(&seed)) catch |err| {
-        std.debug.print("Failed to get random seed: {}\n", .{err});
-        return;
-    };
-
-    var prng = std.Random.DefaultPrng.init(seed);
-    var rand = prng.random();
-
-    weights = [_]f32{ rand.float(f32), rand.float(f32), rand.float(f32) };
-
-    std.debug.print("\nInitial Weights: {d}\n", .{weights});
-    weightSum = weights[0] + weights[1] + weights[2];
-    std.debug.print("WeightSum: {d}\n\n", .{weightSum});
-
-    //             TEMPORARILY COMMENTED BELOW PRODUCTION USER INPUT BLOCK
-    std.debug.print("Is the 1st input Yes or No? ", .{});
+    try stdout.print("Is the 1st input Yes or No? ", .{});
     var decision1: [5]u8 = undefined;
     _ = try stdin.readUntilDelimiter(&decision1, '\n');
     const decision1_slice = std.mem.sliceTo(&decision1, '\r');
@@ -38,7 +20,11 @@ pub fn main() !void {
         decision1_value = 0;
     }
 
-    std.debug.print("Is the 2nd input Yes or No? ", .{});
+    //2 lines are to compare enum to float;Just not sure if this or Boolean is better...
+    const choice1 = @as(i2, @intFromFloat(decision1_value)) == @as(i2, @intFromEnum(Choice.No));
+    std.debug.print("choice1 {any}\n", .{choice1});
+
+    try stdout.print("Is the 2nd input Yes or No? ", .{});
     var decision2: [5]u8 = undefined;
     _ = try stdin.readUntilDelimiter(&decision2, '\n');
     const decision2_slice = std.mem.sliceTo(&decision2, '\r');
@@ -48,14 +34,6 @@ pub fn main() !void {
     } else {
         decision2_value = 0;
     }
-    //             TEMPORARILY COMMENTED ABOVE PRODUCTION USER INPUT BLOCK
-
-    // try stdout.print("{s}\n", .{decision1_slice});
-    // try stdout.print("{s}\n", .{decision2_slice});
-
-    //try perceptron(decision1_value, decision2_value, stdout);
-    //  {"Weight0":8.618600964546204e-1,"Weight1":3.455883860588074e-1,"Weight2":-1.160728931427002e-2}
-    //const weightsFiles = open file or read file? If read file is enough, delete open file statement
 
     var file = try std.fs.openFileAbsolute(filename, .{});
     defer file.close();
@@ -65,7 +43,6 @@ pub fn main() !void {
     const buffer = try allocator.alloc(u8, file_size);
     defer std.heap.page_allocator.free(buffer);
     _ = try file.readAll(buffer);
-    std.debug.print("File content: {s}\n\n", .{buffer});
 
     const weightStruct = struct { Weight0: f32, Weight1: f32, Weight2: f32 };
 
@@ -77,23 +54,21 @@ pub fn main() !void {
     );
     defer parsed.deinit();
     const file_weights = parsed.value;
-    std.debug.print("Parsed: {any}\n\n", .{parsed.value});
-
-    std.debug.print("Weight0: {any}\n\n", .{file_weights.Weight0});
 
     var trained_weights = [_]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
-    std.debug.print("trained_weights: {any}\n\n", .{trained_weights});
-    //    weights = [_]f32{ weightStruct.Weight0, weightStruct.Weight1, weightStruct.Weight2 };
 
-    //need to parse to JSON
-    //need to allocate Space on the heap like I did with write file
-    //seems I Need to deallocate both the opening of the file and the parsing of JSON data
-    //assign weights back to array
+    //                          BELOW debugging prints
+    //std.debug.print("File content: {s}\n\n", .{buffer});
+    //std.debug.print("Parsed: {any}\n\n", .{parsed.value});
+    //std.debug.print("Weight0: {any}\n\n", .{file_weights.Weight0});
+    //std.debug.print("trained_weights: {any}\n\n", .{trained_weights});
+    //                          ABOVE debugging prints
 
     try perceptron(&trained_weights, decision1_value, decision2_value, stdout);
 }
 
 fn perceptron(primed_weights: []f32, input1: f32, input2: f32, stdout: anytype) !void {
+    const bias = 1;
     var outputP: f32 = input1 * primed_weights[0] + input2 * primed_weights[1] + bias * primed_weights[2];
 
     if (outputP > 0) {
@@ -104,15 +79,3 @@ fn perceptron(primed_weights: []f32, input1: f32, input2: f32, stdout: anytype) 
 
     try stdout.print("{d} or {d} is {d}", .{ input1, input2, outputP });
 }
-
-// fn perceptron(input1: f32, input2: f32, stdout: anytype) !void {
-//     var outputP: f32 = input1 * weights[0] + input2 * weights[1] + bias * weights[2];
-
-//     if (outputP > 0) {
-//         outputP = 1;
-//     } else {
-//         outputP = 0;
-//     }
-
-//     try stdout.print("{d} or {d} is {d}", .{ input1, input2, outputP });
-// }
