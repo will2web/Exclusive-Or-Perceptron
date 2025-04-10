@@ -12,15 +12,25 @@
 
 READ
 https://zig.guide/standard-library/json/
-https://ziggit.dev/t/resources-for-parsing-json-strings/1276/3
 https://www.huy.rocks/everyday/01-09-2022-zig-json-in-5-minutes
 https://www.openmymind.net/Reading-A-Json-Config-In-Zig/
+https://ziggit.dev/t/resources-for-parsing-json-strings/1276/3
 
 https://zig.guide/standard-library/allocators/
 https://stackoverflow.com/questions/68368122/how-to-read-a-file-in-zig#:~:text=The%20above%20is%20a%20little,2/%23readers-and-writers
 https://pedropark99.github.io/zig-book/Chapters/01-zig-weird.html
 https://ziglearn.org/chapter-1/
 
+
+RESOURCES
+
+Make Yes & No enum?
+4/10/2025
+Removed global variables, and unused variables & code left from Perceptron_Training.zig
+Included prototype codetocompare choice to Enum
+
+4/9/2025
+Utilized trained weights: Opened, read in weights.json file & Use them to correctly predict Exclusive Or function!
 
 4/8/2025
 reading in weights from file
