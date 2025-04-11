@@ -1,3 +1,5 @@
+-Ask Gemini about the different kinds of allocators
+-See if I can use size of user input To dynamically but efficiently Allocate memory
 -How can I see how much memory is being used by a program?
 -How can I test for memory leaks?
 -When I do Input validation, I can convert input back to U2 instead of float 32
@@ -26,8 +28,8 @@ RESOURCES
 
 Make Yes & No enum?
 4/10/2025
-Removed global variables, and unused variables & code left from Perceptron_Training.zig
-Included prototype codetocompare choice to Enum
+-Removed global variables, and unused variables & code left from Perceptron_Training.zig
+-Included prototype code to compare choice to Enum
 
 4/9/2025
 Utilized trained weights: Opened, read in weights.json file & Use them to correctly predict Exclusive Or function!

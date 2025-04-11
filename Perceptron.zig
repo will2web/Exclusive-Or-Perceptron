@@ -46,6 +46,8 @@ pub fn main() !void {
 
     const weightStruct = struct { Weight0: f32, Weight1: f32, Weight2: f32 };
 
+    //PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
+
     const parsed = try std.json.parseFromSlice(
         weightStruct,
         allocator,
@@ -55,7 +57,7 @@ pub fn main() !void {
     defer parsed.deinit();
     const file_weights = parsed.value;
 
-    var trained_weights = [_]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
+    const trained_weights = [_]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
 
     //                          BELOW debugging prints
     //std.debug.print("File content: {s}\n\n", .{buffer});
@@ -67,7 +69,7 @@ pub fn main() !void {
     try perceptron(&trained_weights, decision1_value, decision2_value, stdout);
 }
 
-fn perceptron(primed_weights: []f32, input1: f32, input2: f32, stdout: anytype) !void {
+fn perceptron(primed_weights: []const f32, input1: f32, input2: f32, stdout: anytype) !void {
     const bias = 1;
     var outputP: f32 = input1 * primed_weights[0] + input2 * primed_weights[1] + bias * primed_weights[2];
 
