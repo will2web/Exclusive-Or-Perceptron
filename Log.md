@@ -1,13 +1,15 @@
+-//Trying to convert byte array to string...
+-PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
+-Ask Gemini about the different kinds of allocators
+-See if I can use size of user input To dynamically but efficiently Allocate memory
 -How can I see how much memory is being used by a program?
 -How can I test for memory leaks?
 -When I do Input validation, I can convert input back to U2 instead of float 32
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
 -Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
 -Clean up variable declaration placement, globally versus locally;search about whether I want to try to have none globally or if that's okay
--read the weights & use the perceptron for future "predictions"
 -posix is not really meant to be used on Windows; might try to wait to test for the operating system and then use appropriate random seed generator
 -start catching errors (and removing the '_ = ' sugar)!
--changed print Statements that are part of actual output from debug.print to standardout.print
 -comment code
 
 READ
@@ -24,10 +26,12 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-Make Yes & No enum?
+4/11/2025
+-In order to simplify code,changed user input conversion to Boolean instead of int or enum; Moved some logic down to perception and used switched statements for performance
+
 4/10/2025
-Removed global variables, and unused variables & code left from Perceptron_Training.zig
-Included prototype codetocompare choice to Enum
+-Removed global variables, and unused variables & code left from Perceptron_Training.zig
+-Included prototype code to compare choice to Enum
 
 4/9/2025
 Utilized trained weights: Opened, read in weights.json file & Use them to correctly predict Exclusive Or function!
