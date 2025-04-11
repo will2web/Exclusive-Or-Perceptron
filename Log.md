@@ -1,3 +1,4 @@
+-PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
 -Ask Gemini about the different kinds of allocators
 -See if I can use size of user input To dynamically but efficiently Allocate memory
 -How can I see how much memory is being used by a program?
@@ -6,10 +7,8 @@
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
 -Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
 -Clean up variable declaration placement, globally versus locally;search about whether I want to try to have none globally or if that's okay
--read the weights & use the perceptron for future "predictions"
 -posix is not really meant to be used on Windows; might try to wait to test for the operating system and then use appropriate random seed generator
 -start catching errors (and removing the '_ = ' sugar)!
--changed print Statements that are part of actual output from debug.print to standardout.print
 -comment code
 
 READ

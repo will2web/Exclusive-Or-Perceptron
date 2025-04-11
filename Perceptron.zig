@@ -1,38 +1,33 @@
 const std = @import("std");
 const filename = "C:/Users/wresc/ZigProjects/Neural Network/Neural-Network/weights.json";
-const Choice = enum {
-    No,
-    Yes,
-};
 
 pub fn main() !void {
     const stdin = std.io.getStdIn().reader();
     const stdout = std.io.getStdOut().writer();
 
-    try stdout.print("Is the 1st input Yes or No? ", .{});
-    var decision1: [5]u8 = undefined;
-    _ = try stdin.readUntilDelimiter(&decision1, '\n');
+    try stdout.print("Is input 1 true or false? ", .{});
+    var decision1: [7]u8 = undefined;
+    const result1 = try stdin.readUntilDelimiter(&decision1, '\n');
     const decision1_slice = std.mem.sliceTo(&decision1, '\r');
-    var decision1_value: f32 = undefined;
-    if (std.mem.eql(u8, decision1_slice, "Yes")) {
-        decision1_value = 1;
+    var decision1_value: bool = undefined;
+    if (std.mem.eql(u8, decision1_slice, "true")) {
+        decision1_value = true;
     } else {
-        decision1_value = 0;
+        decision1_value = false;
     }
 
-    //2 lines are to compare enum to float;Just not sure if this or Boolean is better...
-    const choice1 = @as(i2, @intFromFloat(decision1_value)) == @as(i2, @intFromEnum(Choice.No));
-    std.debug.print("choice1 {any}\n", .{choice1});
+    //Trying to convert byte array to string...
+    std.debug.print("result1 is {c}", .{result1});
 
-    try stdout.print("Is the 2nd input Yes or No? ", .{});
-    var decision2: [5]u8 = undefined;
+    try stdout.print("Is input 2 true or false? ", .{});
+    var decision2: [7]u8 = undefined;
     _ = try stdin.readUntilDelimiter(&decision2, '\n');
     const decision2_slice = std.mem.sliceTo(&decision2, '\r');
-    var decision2_value: f32 = undefined;
-    if (std.mem.eql(u8, decision2_slice, "Yes")) {
-        decision2_value = 1;
+    var decision2_value: bool = undefined;
+    if (std.mem.eql(u8, decision2_slice, "true")) {
+        decision2_value = true;
     } else {
-        decision2_value = 0;
+        decision2_value = false;
     }
 
     var file = try std.fs.openFileAbsolute(filename, .{});
@@ -45,8 +40,6 @@ pub fn main() !void {
     _ = try file.readAll(buffer);
 
     const weightStruct = struct { Weight0: f32, Weight1: f32, Weight2: f32 };
-
-    //PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
 
     const parsed = try std.json.parseFromSlice(
         weightStruct,
@@ -69,15 +62,22 @@ pub fn main() !void {
     try perceptron(&trained_weights, decision1_value, decision2_value, stdout);
 }
 
-fn perceptron(primed_weights: []const f32, input1: f32, input2: f32, stdout: anytype) !void {
+fn perceptron(primed_weights: []const f32, input1: bool, input2: bool, stdout: anytype) !void {
     const bias = 1;
-    var outputP: f32 = input1 * primed_weights[0] + input2 * primed_weights[1] + bias * primed_weights[2];
 
-    if (outputP > 0) {
-        outputP = 1;
-    } else {
-        outputP = 0;
-    }
+    const first_input: f32 = switch (input1) {
+        false => 0.0,
+        true => 1.0,
+    };
 
-    try stdout.print("{d} or {d} is {d}", .{ input1, input2, outputP });
+    const second_input: f32 = switch (input2) {
+        false => 0.0,
+        true => 1.0,
+    };
+
+    const outputP: f32 = first_input * primed_weights[0] + second_input * primed_weights[1] + bias * primed_weights[2];
+
+    const output = outputP > 0;
+
+    try stdout.print("{any} or {any} is {any}", .{ input1, input2, output });
 }
