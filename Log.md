@@ -1,3 +1,4 @@
+-//Trying to convert byte array to string...
 -PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
 -Ask Gemini about the different kinds of allocators
 -See if I can use size of user input To dynamically but efficiently Allocate memory
@@ -25,7 +26,9 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-Make Yes & No enum?
+4/11/2025
+-In order to simplify code,changed user input conversion to Boolean instead of int or enum; Moved some logic down to perception and used switched statements for performance
+
 4/10/2025
 -Removed global variables, and unused variables & code left from Perceptron_Training.zig
 -Included prototype code to compare choice to Enum
