@@ -17,6 +17,10 @@ pub fn main() !void {
     }
 
     //Trying to convert byte array to string...
+    //using the result ("result1") of readUntilDelimiter instead of the buffer
+    //using result.len with buffer might be an in-between solution
+    //maybe re encode in unicode
+    //https://ziglang.org/documentation/0.14.0/std/#std.unicode
     std.debug.print("result1 is {c}", .{result1});
 
     try stdout.print("Is input 2 true or false? ", .{});
