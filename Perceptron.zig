@@ -7,7 +7,9 @@ pub fn main() !void {
 
     try stdout.print("Is input 1 true or false? ", .{});
     var decision1: [7]u8 = undefined;
+    //const result1: []const u8 = try stdin.readUntilDelimiter(&decision1, '\n');
     const result1 = try stdin.readUntilDelimiter(&decision1, '\n');
+    const string1 = std.unicode.fmtUtf8(result1);
     const decision1_slice = std.mem.sliceTo(&decision1, '\r');
     var decision1_value: bool = undefined;
     if (std.mem.eql(u8, decision1_slice, "true")) {
@@ -15,9 +17,13 @@ pub fn main() !void {
     } else {
         decision1_value = false;
     }
+    std.debug.print("string1 is {any}\n", .{string1});
 
     //Trying to convert byte array to string...
-    std.debug.print("result1 is {c}", .{result1});
+    //using the result ("result1") of readUntilDelimiter instead of the buffer
+    //using result.len with buffer might be an in-between solution
+    //maybe re encode in unicode
+    //https://ziglang.org/documentation/0.14.0/std/#std.unicode
 
     try stdout.print("Is input 2 true or false? ", .{});
     var decision2: [7]u8 = undefined;

@@ -26,6 +26,10 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
+Probably should discard "decision1" 
+4/12/2025
+Converted result1 to string format in "string1": const string1 = std.unicode.fmtUtf8(result1);
+
 4/11/2025
 -In order to simplify code,changed user input conversion to Boolean instead of int or enum; Moved some logic down to perception and used switched statements for performance
 
