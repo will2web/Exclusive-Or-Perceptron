@@ -1,4 +1,4 @@
--//Trying to convert byte array to string...
+-still need to include function/variable improvements in Perceptron_Training.zig
 -PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
 -Ask Gemini about the different kinds of allocators
 -See if I can use size of user input To dynamically but efficiently Allocate memory
@@ -6,10 +6,7 @@
 -How can I test for memory leaks?
 -When I do Input validation, I can convert input back to U2 instead of float 32
 -Maybe have a perceptron function return the answer as its type instead of using any standard in or standard out in it
--Using an if statement to convert yes and no to 1 and 0,but later do it with an enum
--Clean up variable declaration placement, globally versus locally;search about whether I want to try to have none globally or if that's okay
 -posix is not really meant to be used on Windows; might try to wait to test for the operating system and then use appropriate random seed generator
--start catching errors (and removing the '_ = ' sugar)!
 -comment code
 
 READ
@@ -26,9 +23,12 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-Probably should discard "decision1" 
 4/12/2025
-Converted result1 to string format in "string1": const string1 = std.unicode.fmtUtf8(result1);
+-Commenting out "string1" & associated code as inefficient & not needed unless debugging
+-Moved file open code to function
+
+4/12/2025
+-Converted result1 to string format in "string1": const string1 = std.unicode.fmtUtf8(result1);
 
 4/11/2025
 -In order to simplify code,changed user input conversion to Boolean instead of int or enum; Moved some logic down to perception and used switched statements for performance

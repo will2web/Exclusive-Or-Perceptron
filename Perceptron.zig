@@ -7,9 +7,10 @@ pub fn main() !void {
 
     try stdout.print("Is input 1 true or false? ", .{});
     var decision1: [7]u8 = undefined;
+    _ = try stdin.readUntilDelimiter(&decision1, '\n');
+    //COMMENT 1      use BELOW line along with Comment 2 to debug user input
     //const result1: []const u8 = try stdin.readUntilDelimiter(&decision1, '\n');
-    const result1 = try stdin.readUntilDelimiter(&decision1, '\n');
-    const string1 = std.unicode.fmtUtf8(result1);
+    //COMMENT 1      use ABOVE line along with Comment 2 to debug user input
     const decision1_slice = std.mem.sliceTo(&decision1, '\r');
     var decision1_value: bool = undefined;
     if (std.mem.eql(u8, decision1_slice, "true")) {
@@ -17,13 +18,10 @@ pub fn main() !void {
     } else {
         decision1_value = false;
     }
-    std.debug.print("string1 is {any}\n", .{string1});
-
-    //Trying to convert byte array to string...
-    //using the result ("result1") of readUntilDelimiter instead of the buffer
-    //using result.len with buffer might be an in-between solution
-    //maybe re encode in unicode
-    //https://ziglang.org/documentation/0.14.0/std/#std.unicode
+    //COMMENT 2     use BELOW lines along with Comment 1 to debug user input
+    //const string1 = std.unicode.fmtUtf8(result1);
+    //std.debug.print("string1 is {any}\n", .{string1});
+    //COMMENT 2     use ABOVE lines along with Comment 1 to debug user input
 
     try stdout.print("Is input 2 true or false? ", .{});
     var decision2: [7]u8 = undefined;
@@ -36,6 +34,19 @@ pub fn main() !void {
         decision2_value = false;
     }
 
+    //COMMENT 3     BELOW debugging prints
+    //std.debug.print("File content: {s}\n\n", .{buffer});
+    //std.debug.print("Parsed: {any}\n\n", .{parsed.value});
+    //std.debug.print("Weight0: {any}\n\n", .{file_weights.Weight0});
+    //std.debug.print("trained_weights: {any}\n\n", .{trained_weights});
+    //COMMENT 3     ABOVE debugging prints
+
+    const weights: [3]f32 = try get_weights_from_file();
+    std.debug.print("weights: {any}\n", .{weights});
+    try perceptron(&weights, decision1_value, decision2_value, stdout);
+}
+
+fn get_weights_from_file() ![3]f32 {
     var file = try std.fs.openFileAbsolute(filename, .{});
     defer file.close();
     const stat = try file.stat();
@@ -54,18 +65,10 @@ pub fn main() !void {
         .{},
     );
     defer parsed.deinit();
+
     const file_weights = parsed.value;
 
-    const trained_weights = [_]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
-
-    //                          BELOW debugging prints
-    //std.debug.print("File content: {s}\n\n", .{buffer});
-    //std.debug.print("Parsed: {any}\n\n", .{parsed.value});
-    //std.debug.print("Weight0: {any}\n\n", .{file_weights.Weight0});
-    //std.debug.print("trained_weights: {any}\n\n", .{trained_weights});
-    //                          ABOVE debugging prints
-
-    try perceptron(&trained_weights, decision1_value, decision2_value, stdout);
+    return [3]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
 }
 
 fn perceptron(primed_weights: []const f32, input1: bool, input2: bool, stdout: anytype) !void {
@@ -82,8 +85,6 @@ fn perceptron(primed_weights: []const f32, input1: bool, input2: bool, stdout: a
     };
 
     const outputP: f32 = first_input * primed_weights[0] + second_input * primed_weights[1] + bias * primed_weights[2];
-
     const output = outputP > 0;
-
-    try stdout.print("{any} or {any} is {any}", .{ input1, input2, output });
+    try stdout.print("{} or {} is {}\n", .{ input1, input2, output });
 }
