@@ -23,7 +23,17 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-4/12/2025
+I think I can rewrite the below as "decision1_value = std.mem.eql(u8, decision1_slice, "true")"
+    if (std.mem.eql(u8, decision1_slice, "true")) {
+        decision1_value = true;
+    } else {
+        decision1_value = false;
+    }
+need to rename variables like "decision1" to "decision" Since it isn't its own function instead of redundantly being in the code twice
+4/14/2025
+-created "get_user_input" function
+
+4/13/2025
 -Commenting out "string1" & associated code as inefficient & not needed unless debugging
 -Moved file open code to function
 
