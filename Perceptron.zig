@@ -2,37 +2,32 @@ const std = @import("std");
 const filename = "C:/Users/wresc/ZigProjects/Neural Network/Neural-Network/weights.json";
 
 pub fn main() !void {
-    var inputs: [2]bool = undefined;
-    for (inputs, 0..) |_, i| {
-        inputs[i] = try get_user_input(i);
+    var user_inputs: [2]bool = undefined;
+    for (user_inputs, 0..) |_, i| {
+        user_inputs[i] = try get_user_input(i);
     }
 
-    const weights: [3]f32 = try get_weights_from_file();
-    try perceptron(&weights, inputs[0], inputs[1]);
+    const read_weights: [3]f32 = try get_weights_from_file();
+    try perceptron(&read_weights, &user_inputs);
 }
 
 fn get_user_input(input: usize) !bool {
     const stdout = std.io.getStdOut().writer();
     const stdin = std.io.getStdIn().reader();
 
-    var decision1: [7]u8 = undefined;
+    var choice: [7]u8 = undefined;
     try stdout.print("Is input {} true or false? ", .{input + 1});
-    _ = try stdin.readUntilDelimiter(&decision1, '\n');
-    const decision1_slice = std.mem.sliceTo(&decision1, '\r');
+    _ = try stdin.readUntilDelimiter(&choice, '\n');
+    const choice_slice = std.mem.sliceTo(&choice, '\r');
 
-    var decision1_value: bool = undefined;
-    if (std.mem.eql(u8, decision1_slice, "true")) {
-        decision1_value = true;
-    } else {
-        decision1_value = false;
-    }
+    const choice_value = std.mem.eql(u8, choice_slice, "true");
 
     //              Use BELOW 3 lines to debug user input
-    //const result1: []const u8 = try stdin.readUntilDelimiter(&decision1, '\n');
-    //const string1 = std.unicode.fmtUtf8(result1);
-    //std.debug.print("string1 is {any}\n", .{string1});
+    //const result: []const u8 = try stdin.readUntilDelimiter(&choice, '\n');
+    //const string = std.unicode.fmtUtf8(result);
+    //std.debug.print("string is {any}\n", .{string});
 
-    return decision1_value;
+    return choice_value;
 }
 
 fn get_weights_from_file() ![3]f32 {
@@ -66,21 +61,19 @@ fn get_weights_from_file() ![3]f32 {
     return [3]f32{ file_weights.Weight0, file_weights.Weight1, file_weights.Weight2 };
 }
 
-fn perceptron(primed_weights: []const f32, input1: bool, input2: bool) !void {
+fn perceptron(weights: []const f32, inputs: []bool) !void {
     const stdout = std.io.getStdOut().writer();
     const bias = 1;
 
-    const first_input: f32 = switch (input1) {
-        false => 0.0,
-        true => 1.0,
-    };
+    var input: [2]f32 = undefined;
+    for (input, 0..) |_, i| {
+        input[i] = switch (inputs[i]) {
+            false => 0.0,
+            true => 1.0,
+        };
+    }
 
-    const second_input: f32 = switch (input2) {
-        false => 0.0,
-        true => 1.0,
-    };
-
-    const outputP: f32 = first_input * primed_weights[0] + second_input * primed_weights[1] + bias * primed_weights[2];
+    const outputP: f32 = input[0] * weights[0] + input[1] * weights[1] + bias * weights[2];
     const output = outputP > 0;
-    try stdout.print("{} or {} is {}\n", .{ input1, input2, output });
+    try stdout.print("{} or {} is {}\n", .{ inputs[0], inputs[1], output });
 }
