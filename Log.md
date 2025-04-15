@@ -23,13 +23,19 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-I think I can rewrite the below as "decision1_value = std.mem.eql(u8, decision1_slice, "true")"
-    if (std.mem.eql(u8, decision1_slice, "true")) {
-        decision1_value = true;
-    } else {
-        decision1_value = false;
-    }
-need to rename variables like "decision1" to "decision" Since it isn't its own function instead of redundantly being in the code twice
+
+Write up my LinkedIn articles for 4/15/2025
+Explore using Vectors instead of Arrays, review resources:
+https://ziglang.org/documentation/0.14.0/#Vectors
+https://zig.guide/language-basics/vectors/
+My Gemini vector question
+4/15/2025
+-Shortened if/else statement to 1 liner
+-renamed variables like "decision1" to more generalized "decision" 
+-changed Perceptron arguments from 2 input arguments to 1 input array
+-made choice_value a one-liner & therefore a constant
+-I am sacrificing some efficiency for scalability, when using arrays with for loops instead of constants
+
 4/14/2025
 -created "get_user_input" function
 
