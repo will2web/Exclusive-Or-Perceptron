@@ -23,7 +23,9 @@ https://ziglearn.org/chapter-1/
 
 RESOURCES
 
-
+included error handling
+performance testing
+run code through Gemini, show before & after code & Gemini message
 Write up my LinkedIn articles for 4/15/2025
 Explore using Vectors instead of Arrays, review resources:
 https://ziglang.org/documentation/0.14.0/#Vectors
