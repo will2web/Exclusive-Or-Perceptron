@@ -1,3 +1,6 @@
+-zig debugger!
+-Can I limit user input?
+-Investigate array list and multi array list
 -still need to include function/variable improvements in Perceptron_Training.zig
 -PLAY AROUND WITH @TypeOf FOR STRINGS & ESPECIALLY CONST STRINGS
 -Ask Gemini about the different kinds of allocators
@@ -10,6 +13,8 @@
 -comment code
 
 READ
+about for loop constructs
+
 https://zig.guide/standard-library/json/
 https://www.huy.rocks/everyday/01-09-2022-zig-json-in-5-minutes
 https://www.openmymind.net/Reading-A-Json-Config-In-Zig/
